@@ -1,0 +1,270 @@
+.header {
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 4px 2px -2px gray;
+
+
+  .container-big {
+    &--header {
+      overflow-x: initial;
+    }
+  }
+  
+  &__inner,
+  &__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__box {
+    position: relative;
+    width: 100%;
+    max-width: 882px;
+  }
+  
+  &__phone-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  &__desc {
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  &__subdesc {
+    font-size: 20px;
+    color: $default;
+    white-space: nowrap;
+    @extend %montserrat-700;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $hover;
+    }
+  }
+
+  &__popup {
+    display: flex;
+    align-items: center;
+    border: none;
+    background-color: #fff;
+    text-transform: uppercase;
+    white-space: nowrap;
+    user-select: none;
+    height: 0;
+    opacity: 0;
+    display: none;
+    transition: height 0.3s, opacity 0.3s, margin-right 0.5s, width 0.5s;
+
+    &.active {
+      margin-right: 0;
+      margin-top: 0;
+      .header__popup-line {
+          height: 0;
+          &::before {
+            top: -3px;
+            margin-bottom: 0;
+            transform: rotate(45deg);
+          }
+          &::after {
+            bottom: 1px;
+            transform: rotate(-45deg);
+          }
+      }
+      &:hover {
+        .header__popup-line{
+          &::after {
+            transform: rotate(45deg);
+          }
+    
+          &::before {
+            transform: rotate(135deg);
+          }
+        }
+      }
+    }
+  }
+
+  &__popup-line{
+    position: relative;
+    height: 2px;
+    width: 20px;
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    background-color: $default;
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: '';
+      width: 20px;
+      height: 2px;
+      right: 0;
+      background-color: $default;
+      transition: transform 0.3s;
+    }
+
+    &::before {
+      top: -7px;      
+    }
+
+    &::after {
+      bottom: -7px;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    &__popup {
+      display: inline-block;
+      height: 100%;
+      margin-left: 0;
+      margin-right: 61%;
+      opacity: 1;
+    }
+
+    &__phone-block {
+      height: 100%;
+      opacity: 1;
+      transform: translateY(0%);
+      transition: transform 0.3s;
+
+      & p,
+      & a {
+        display: inline-block;
+      }
+    }
+
+    .menu.active {
+      display: content;
+      padding-top: 0;
+    }
+
+    &__inner.active{
+      .header__phone-block {
+        transform: translateX(400%);
+        height: 0;
+        width: 0;
+        opacity: 0;
+        transition: transform 1s;
+
+        & p,
+        & a {
+          display: none;
+        }
+      }
+
+      .icon-location {
+        font-size: 24px;
+      }
+
+      .icon-phone {
+        font-size: 22px;
+      }
+
+      .icon-mail {
+        padding-top: 4px;
+        font-size: 19px;
+      }
+
+      .contacts__list {
+        width: 100%;
+        max-width: 550px;
+        margin-bottom: 100px;
+      }
+    }
+
+    &__box {
+      max-width: 100%;
+    }
+}
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    padding: 30px 0;
+
+    &__box {
+      & a {
+        display: none;
+      }
+    }
+    
+    &__inner.active {
+      .menu-mobile {
+        top: 110px;
+        display: block;
+        &__inner {
+          overflow-y: auto;
+        }
+      }
+
+      .header {
+        &__box {
+          & a {
+            display: inline-block;
+          }
+        }
+      }
+
+      .menu {
+        height: 40%;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+
+      .contacts__list {
+        width: 100%;
+      }
+    }
+
+    &__subdesc {
+      font-size: 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .header {
+    &__box {
+      margin-left: -5px;
+    }
+
+    &__popup {
+      margin-left: 0;
+
+      &.active {
+        padding-right: 0;
+      }
+    }
+
+    &__img {
+      margin-left: 5px;
+    }
+
+    &__subdesc {
+      font-size: 18px;
+    }
+
+     &__inner.active {
+       margin-right: -5px;
+      .menu-mobile {
+        top: 110px;
+
+        .contacts__list {
+          padding-top: 80px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+      }
+    }
+  }
+}
