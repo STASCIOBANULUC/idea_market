@@ -131,7 +131,10 @@ REST_FRAMEWORK = {
 
 }
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000',
+                        "http://localhost:8000",
+
+                         ]
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
