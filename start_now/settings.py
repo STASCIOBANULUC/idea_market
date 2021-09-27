@@ -139,6 +139,16 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     "http://localhost:8000",
 ]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
