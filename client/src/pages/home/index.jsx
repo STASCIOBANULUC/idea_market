@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import classNames from 'classnames'
 import Menu from '../../components/menu';
 import CardProject from '../../components/RecipeReviewCard'
@@ -134,9 +135,24 @@ const cards = [
 export default function Home() {
   const [activeId, setActiveId] = React.useState(null);
   const [activePopup, setActivePopup] = React.useState(false);
+  const [project, setProject] = React.useState([]);
 
+  React.useEffect(() => {
 
+    async function fetchData() {
+      try {
+//         setLoading(true)
+        const project = await axios.get('Access-Control-Allow-Origin : http://127.0.0.1:8000/project/')
 
+         setProject(project.data);
+      } catch (e) {
+        alert('Не удалось загрузить');
+      }
+    }
+    fetchData();
+//     setLoading(false)
+  },[]);
+console.log(project)
   return (
     <>
       <section className={classNames("top", style.top)}>

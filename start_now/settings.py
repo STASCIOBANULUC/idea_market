@@ -1,6 +1,11 @@
 from datetime import timedelta
 from pathlib import Path
 
+CORS_ORIGIN_WHITELIST = [
+    'http://127.0.0.1:8000',
+    'http://any.host.want.to.allow.to.access.this.server.com',
+]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
