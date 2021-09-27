@@ -2,4 +2,8 @@ db.sqlite3
 venv
 mirgations
 .idea
+<<<<<<< HEAD
+=======
+client/node_modules
+>>>>>>> 68898c5995d73ae6b23dc3b7b48651ec85a771e6
 

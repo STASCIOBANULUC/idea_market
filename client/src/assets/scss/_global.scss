@@ -1,0 +1,246 @@
+@import './_mixins';
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.animate-section {
+  opacity: 0;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  // background-image: url('/images/content/bg100for100.jpg');
+  background-repeat: repeat;
+  background-size: 100px;
+  z-index: 6666;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  // background-image: url('/images/content/bg100for100.jpg');
+  background-repeat: repeat;
+  background-size: 100px;
+  color: $default;
+  overflow-x: hidden;
+  @extend %montserrat-400;
+}
+
+.body--active {
+  .mobile-menu {
+    display: flex;
+  }
+
+  .header__popup-btn::before {
+    transform: rotate(45deg) translateY(4px);
+  }
+  .header__popup-btn::after {
+    transform: rotate(-45deg) translateY(-4px);
+  }
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 25px;
+  overflow: hidden;
+
+  @media screen and (max-width: 767px) {
+    padding: 0 15px;
+
+    &__mob-strip {
+      padding: 0 !important;
+    }
+  }
+}
+
+.container-big {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 25px;
+  overflow-x: hidden;
+
+  @media screen and (max-width: 1024px) {
+    padding: 0 40px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0 15px;
+  }
+}
+
+.mobile-menu {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__link {
+    font-size: 16px;
+    color: #fff;
+    text-transform: uppercase;
+  }
+}
+
+.main {
+  flex-grow: 1;
+}
+
+a,
+button {
+  outline: transparent;
+  cursor: pointer;
+}
+
+.logo {
+  margin-right: 30px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @include _320 {
+    margin-right: 0;
+  }
+}
+
+.title {
+  padding-bottom: 20px;
+  font-size: 36px;
+  color: $title;
+  text-align: left;
+  text-transform: uppercase;
+  @extend %impact-900;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: $accent;
+  text-transform: uppercase;
+  @extend %montserrat-700;
+}
+
+.link {
+  position: relative;
+  width: 100%;
+  max-width: 251px;
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  background-color: grey;
+  color: #fff;
+  border: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  z-index: 0;
+  @extend %impact-900;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    width: 100%;
+    height: 0;
+    padding-bottom: 500%;
+    background-color: #000;
+    z-index: 0;
+    transform-origin: top;
+    transform: rotate(-45deg) translate(0, -50%);
+    transition: transform 0.4s;
+  }
+
+  &:hover::before {
+    transform: rotate(-45deg) translate(50%, -50%);
+  }
+
+  &--black {
+    color: #acda53;
+    background-color: #242424;
+    border: 1px solid $bgdefault;
+
+    &::before {
+      background-color: #333333;
+    }
+  }
+
+  &__text {
+    position: relative;
+    z-index: 2;
+  }
+
+  .stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.logo {
+  position: relative;
+  display: inline-block;
+  margin: 0 auto;
+  font-size: 32px;
+  text-align: center;
+  color: black;
+  -webkit-text-stroke: 1px #000000;
+  overflow: hidden;
+  text-transform: uppercase;
+  background: linear-gradient(to left, #fff, #fff 50%, black 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 0%;
+  transition: background-position 275ms ease;
+  text-decoration: none;
+  z-index: 10;
+  &:hover {
+    background-position: 100% 0%;
+  }
+
+  @include _1024 {
+    font-size: 24px;
+  }
+
+  @include _567 {
+    font-size: 20px;
+  }
+
+  @include _375 {
+    font-size: 18px;
+  }
+}
+
+.MuiCard-root {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  z-index: 100;
+}
+
+.MuiBox-root {
+  margin-bottom: 50px;
+}

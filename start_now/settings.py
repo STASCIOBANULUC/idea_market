@@ -132,9 +132,23 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000',
-                        "http://localhost:8000",
-
+                         "http://localhost:8000",
                          ]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:3000',
+    "http://localhost:8000",
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

@@ -1,0 +1,32 @@
+.top {
+   // background-color: #000;
+   background-color: rgba(205, 186, 170, 0.5);
+   // border-bottom: 1px solid grey;
+   box-shadow: inset 0px -9px 3px -8px grey;
+}
+
+.products {
+   position: relative;
+   padding: 0px 0 100px;
+   border-top: 20px solid #000;
+   // display: flex;
+   // justify-content: center;
+}
+
+.img {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: 0;
+
+   // opacity: 0.8;
+}
+
+.productsInner {
+   margin-right: -20px;
+   padding: 50px 0;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content:center;
+}
