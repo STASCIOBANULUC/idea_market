@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import style from './RecipeReviewCard.module.scss'
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -26,13 +27,27 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function RecipeReviewCard({img}) {
+// "id": 1,
+//         "user": "admin",
+//         "production": true,
+//         "category": "start-projects",
+//         "name": "idea",
+//         "description": "Котлета",
+//         "img": "http://localhost:8000/media/images.jpg",
+//         "file": "http://localhost:8000/media/alejandra-vargas-insta.jpg",
+//         "money": "10000.00",
+//         "money_now": "0.00",
+//         "date": "2021-09-26T23:06:46.993996Z",
+//         "logo": "http://localhost:8000/media/company/logo.png",
+
+export default function RecipeReviewCard({user, money, money_now, img, category, name, description, file, date}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  const image = img
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -46,8 +61,8 @@ export default function RecipeReviewCard({img}) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={user}
+        subheader={date}
       />
       <CardMedia
         component="img"
@@ -57,11 +72,14 @@ export default function RecipeReviewCard({img}) {
         alt="Paella dish"
       />
       <CardContent>
+      {name}
         <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+            {description}
+
         </Typography>
+
+        <div className={style.price}><span>{money}</span><span>{money_now}</span></div>
+
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -70,14 +88,14 @@ export default function RecipeReviewCard({img}) {
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
+{/*         <ExpandMore */}
+{/*           expand={expanded} */}
+{/*           onClick={handleExpandClick} */}
+{/*           aria-expanded={expanded} */}
+{/*           aria-label="show more" */}
+{/*         > */}
+{/*           <ExpandMoreIcon /> */}
+{/*         </ExpandMore> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
