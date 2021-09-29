@@ -7,7 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title'], }
 
 
-admin.site.register(CustomUser)
+admin.site.register(Profile)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Project)
 admin.site.register(Team)

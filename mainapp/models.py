@@ -1,23 +1,38 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
 
-class CustomUser(AbstractUser):
+# class CustomUser(AbstractUser):
+#     first_name = models.CharField(max_length=200)
+#     last_name = models.CharField(max_length=200)
+#     age = models.PositiveIntegerField(null=True, blank=False)
+#     project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False)
+#
+#     class Meta(AbstractUser.Meta):
+#         verbose_name = 'Пользователь'
+#
+#         verbose_name_plural = 'Пользователи'
+#         ordering = ['age']
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
-    age = models.PositiveIntegerField( null=True, blank=False)
-    project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False )
+    age = models.PositiveIntegerField(null=True, blank=False)
+    address = models.CharField(max_length=200)
+    avatar = models.ImageField(upload_to='media')
+    project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False)
+    date_register = models.DateTimeField(auto_now_add=True)
 
-    class Meta(AbstractUser.Meta):
-        verbose_name = 'Пользователь'
+    class Meta:
+        ordering = ('-date_register',)
 
-        verbose_name_plural = 'Пользователи'
-        ordering = ['age']
+    def __str__(self):
+        return "{} {}".format(self.first_name, self.last_name)
 
 
 class Team(models.Model):
     name = models.CharField(max_length=200)
-    users = models.ManyToManyField(CustomUser, verbose_name="Список участников команды")
+    users = models.ManyToManyField(User, verbose_name="Список участников команды")
     projects = models.ForeignKey("Project", on_delete=models.CASCADE)
 
 
@@ -35,8 +50,6 @@ class Category(models.Model):
 
 
 class Project(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="Основатель проекта",
-                             related_name='user_poject')
     production = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Категория проекта")
     name = models.CharField(max_length=200, verbose_name="Название проекта")
@@ -54,5 +67,3 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
-
-

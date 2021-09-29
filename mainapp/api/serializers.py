@@ -3,23 +3,23 @@ from rest_framework import serializers
 from mainapp.api.buisiness_logic import *
 
 
-class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = ['id', 'url', 'username', 'email', 'groups']
+        model = User
+        fields = ['id', 'url', 'username', 'email']
+
+
+class ProfileSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['__all__']
+
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['title', 'slug']
-
-
-# class ProjectSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = Project
-#         fields = ['user', 'category', 'name', 'description', 'date', 'money', 'money_now']
 
 
 class TeamSerializer(serializers.HyperlinkedModelSerializer):
