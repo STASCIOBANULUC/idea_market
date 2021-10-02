@@ -3,7 +3,7 @@
   width: 100%;
   min-width: 320px;
   min-height: 100vh;
-  top: 110px;
+  top: 77px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -15,7 +15,7 @@
   margin: 0;
   padding: 0;
   overflow: auto;
-  z-index: 20;
+  z-index: 30;
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -53,6 +53,6 @@
 
 @media screen and (max-width: 767px) {
   .menu-mobile {
-    top: 140px;
+    top: 96px;
   }
 }
