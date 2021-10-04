@@ -58,9 +58,9 @@ export default function Header({ services }) {
             }
           </div>
 
-            <Link className="menu__link-btn link" to="/login">
+            {!activePopup && <Link className="menu__link-btn link" to="/login">
               <span className="link__text">Войти</span>
-            </Link>
+            </Link>}
         
         </div>
       </div>
