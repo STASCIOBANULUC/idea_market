@@ -1,27 +1,18 @@
-from django.contrib.auth.models import AbstractUser, User
+from django.contrib.auth.models import User
 from django.db import models
 
 
-# class CustomUser(AbstractUser):
-#     first_name = models.CharField(max_length=200)
-#     last_name = models.CharField(max_length=200)
-#     age = models.PositiveIntegerField(null=True, blank=False)
-#     project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False)
-#
-#     class Meta(AbstractUser.Meta):
-#         verbose_name = 'Пользователь'
-#
-#         verbose_name_plural = 'Пользователи'
-#         ordering = ['age']
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    age = models.PositiveIntegerField(null=True, blank=False)
-    address = models.CharField(max_length=200)
-    avatar = models.ImageField(upload_to='media')
-    project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False)
-    date_register = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(max_length=200, verbose_name="Имя владельца профиля")
+    last_name = models.CharField(max_length=200, verbose_name="Фамилия владельца профиля")
+    age = models.PositiveIntegerField(verbose_name="Сколько лет")
+    address = models.CharField(max_length=200, verbose_name="Адрес пользователся")
+    avatar = models.ImageField(upload_to='media', verbose_name="Фото профиля")
+    project = models.ForeignKey("Project", on_delete=models.CASCADE, null=True, blank=False,
+                                verbose_name="Проекты пользователя")
+    teams = models.ManyToManyField('Team', null=True, blank=False)
+    date_register = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания профиля")
 
     class Meta:
         ordering = ('-date_register',)
@@ -59,6 +50,7 @@ class Project(models.Model):
     money = models.DecimalField(decimal_places=2, max_digits=9, verbose_name="Нужная сумма")
     money_now = models.DecimalField(decimal_places=2, max_digits=9, verbose_name="Сумма собранная на даный момент")
     date = models.DateTimeField(verbose_name="Время создания проекта", auto_now_add=True)
+    date_finish = models.DateTimeField(verbose_name="Время окончания проекта", auto_now_add=True)
 
     class Meta:
         verbose_name = 'Проект'
