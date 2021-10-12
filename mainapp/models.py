@@ -1,5 +1,8 @@
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+
+from asyst.models import Like
 
 
 class Profile(models.Model):
@@ -13,12 +16,17 @@ class Profile(models.Model):
                                 verbose_name="Проекты пользователя")
     teams = models.ManyToManyField('Team', null=True, blank=False)
     date_register = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания профиля")
+    likes = GenericRelation(Like)
 
     class Meta:
         ordering = ('-date_register',)
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+    @property
+    def total_likes(self):
+        return self.likes.count()
 
 
 class Team(models.Model):

@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&9e0tqf%kg+16e^3#oc(iz4#2sbp)042e!ws^#$!7&4^_3gg^e'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'djoser',
+
+    'asyst'
 ]
 
 MIDDLEWARE = [
@@ -168,8 +170,8 @@ CORS_ALLOW_HEADERS = [
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'pythondevluc@gmail.com'
-EMAIL_HOST_PASSWORD = '0966648070'
+EMAIL_HOST_USER = 'idea.market.idea@gmail.com'
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 
 DJOSER = {

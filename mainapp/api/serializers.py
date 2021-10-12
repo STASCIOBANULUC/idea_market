@@ -1,6 +1,7 @@
 from mainapp.models import *
 from rest_framework import serializers
 from mainapp.api.buisiness_logic import *
+from asyst import service
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -28,6 +29,14 @@ class TeamSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+    is_fan = serializers.SerializerMethodField()
     class Meta:
         model = Project
-        fields = ['production', 'category', 'name', 'description', 'img', 'file', 'money', 'money_now', 'date', 'date_finish']
+        fields = ['production', 'category', 'name', 'description', 'img', 'file', 'money', 'money_now', 'date', 'date_finish', 'total_likes', 'if_fan']
+
+    def get_is_fan(self, obj) -> bool:
+        """Проверяет, лайкнул ли `request.user` твит (`obj`).
+        """
+        user = self.context.get('request').user
+        return service.is_fan(obj, user)
+    
